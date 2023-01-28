@@ -1,7 +1,7 @@
-let latitude = "51.5072";
-let longitude = "0.1276";
+// let latitude = "51.5072";
+// let longitude = "0.1276";
 let api="2a06c39ab528ae5260e7be3fb9a676eb"
-let queryURL = "https://api.openweathermap.org/data/2.5/forecast?" + "lat=" + latitude + "&lon=" + longitude + "&appid=" + api;
+// let queryURL = "https://api.openweathermap.org/data/2.5/forecast?" + "lat=" + latitude + "&lon=" + longitude + "&appid=" + api;
 
 // console.log(queryURL)
 
@@ -33,21 +33,40 @@ let queryURL = "https://api.openweathermap.org/data/2.5/forecast?" + "lat=" + la
         let city = $("#search-input").val();
     console.log(city)
         event.preventDefault()
-    let queryCity = "http://api.openweathermap.org/geo/1.0/direct?q=" + city + "&limit=5&appid=2a06c39ab528ae5260e7be3fb9a676eb";
+    let queryCity = "http://api.openweathermap.org/geo/1.0/direct?q=" + city + "&limit=5" + "&appid=" + api;
     console.log(queryCity)
    
     $.ajax({
               url: queryCity,
               method: "GET"
             })
-              .then(function(response) {
-                let latitudeResult = response [0].lat;
-                let longitudeResult = response [0].lon;
+              .then(function(geoResponse) {
+                let latitudeResult = geoResponse [0].lat;
+                let longitudeResult = geoResponse [0].lon;
                 console.log(latitudeResult)
                 console.log(longitudeResult)
-        
-              })
-        
+
+                let queryURL = "https://api.openweathermap.org/data/2.5/forecast?" + "lat=" + latitudeResult + "&lon=" + longitudeResult + "&appid=" + api;
+
+                $.ajax({
+                    url: queryURL,
+                    method: "GET"
+                  })
+              
+                .then(function(response) {
+                            var results = response.list;
+                            console.log(results)
+                            console.log(results[1].dt_txt)
+                            console.log(results[9].dt_txt)
+                            console.log(results[1].main.temp)
+                    let tempKelvin = results[1].main.temp;
+                    console.log(tempKelvin)
+                    let fahrenheit = Math.round(tempKelvin - 273.15) ;
+                    console.log (fahrenheit)
+                          })
+
+
+})
             })
 
 
