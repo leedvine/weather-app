@@ -73,7 +73,7 @@ function runWeatherSearch () {
       let todaysDate = results[0].dt_txt;
       console.log(todaysDate);
 
-      let todaysWeatherIcon = "https://openweathermap.org/img/wn/" + results[0].weather[0].icon + "@4x.png";
+      let todaysWeatherIcon = "https://openweathermap.org/img/wn/" + results[0].weather[0].icon + "@2x.png";
       console.log(todaysWeatherIcon) 
 
       console.log(results[8].dt_txt);
