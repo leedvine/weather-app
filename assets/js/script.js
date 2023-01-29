@@ -83,13 +83,14 @@ function runWeatherSearch () {
       console.log("temp converted to celcius = " + celcius)
 
       let wind = results[0].wind.speed;
-      console.log("wind speed = " + wind + " miles per second");
+      let windRounded = Math.round(wind * 10) / 10;
+      console.log("wind speed = " + windRounded + " miles per second");
 
       let humidity = results[0].main.humidity;
       console.log("Humidity is = " + humidity + "%");
       document.getElementById('todays-headline').innerHTML = city + ' ' + todaysDate + ' <img src="' + todaysWeatherIcon + '">';
       document.getElementById('todays-temp').innerHTML = "TEMP: " + celcius;
-      document.getElementById('todays-wind').innerHTML = "WIND: " + wind + "m/s";
+      document.getElementById('todays-wind').innerHTML = "WIND: " + windRounded + "m/s";
       document.getElementById('todays-humidity').innerHTML = "Humidity: " + humidity + "%";
     })
   })
