@@ -54,15 +54,18 @@ let api="2a06c39ab528ae5260e7be3fb9a676eb"
                   })
               
                 .then(function(response) {
-                            var results = response.list;
+                            let results = response.list;
                             console.log(results)
-                            console.log(results[1].dt_txt)
-                            console.log(results[9].dt_txt)
-                            console.log(results[1].main.temp)
-                    let tempKelvin = results[1].main.temp;
+                            console.log(results[0].dt_txt)
+                            console.log(results[8].dt_txt)
+                    let tempKelvin = results[0].main.temp;
                     console.log(tempKelvin)
-                    let fahrenheit = Math.round(tempKelvin - 273.15) ;
-                    console.log (fahrenheit)
+                    let celcius = Math.round(tempKelvin - 273.15) ;
+                    console.log ("temp converted to celcius = " + celcius)
+
+                  let wind = results[0].wind.speed;
+                  console.log("wind speed = " + wind + " miles per second")
+
                           })
 
 
