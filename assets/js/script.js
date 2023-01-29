@@ -23,7 +23,7 @@ let api = "2a06c39ab528ae5260e7be3fb9a676eb";
 
 //     })
 
-// http://api.openweathermap.org/geo/1.0/direct?q=London&limit=5&appid=2a06c39ab528ae5260e7be3fb9a676eb how to get latittudes
+// https://api.openweathermap.org/geo/1.0/direct?q=London&limit=5&appid=2a06c39ab528ae5260e7be3fb9a676eb how to get latittudes
 
 $("#search-button").on("click", function (event) {
   event.preventDefault();
@@ -35,7 +35,7 @@ function runWeatherSearch () {
   console.log(city);
   
   let queryCity =
-    "http://api.openweathermap.org/geo/1.0/direct?q=" +
+    "https://api.openweathermap.org/geo/1.0/direct?q=" +
     city +
     "&limit=5" +
     "&appid=" +
