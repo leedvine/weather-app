@@ -45,7 +45,8 @@ function runWeatherSearch () {
   $.ajax({
     url: queryCity,
     method: "GET",
-  }).then(function (geoResponse) {
+  })
+  .then(function (geoResponse) {
     let latitudeResult = geoResponse[0].lat;
     let longitudeResult = geoResponse[0].lon;
     console.log(latitudeResult);
@@ -68,23 +69,31 @@ function runWeatherSearch () {
     .then(function (response) {
       let results = response.list;
       console.log(results);
-      console.log(results[0].dt_txt);
+     
+      let todaysDate = results[0].dt_txt;
+      console.log(todaysDate);
+
+      let todaysWeatherIcon = "https://openweathermap.org/img/wn/" + results[0].weather[0].icon + "@4x.png";
+      console.log(todaysWeatherIcon) 
+
       console.log(results[8].dt_txt);
       let tempKelvin = results[0].main.temp;
       console.log(tempKelvin);
       let celcius = Math.round(tempKelvin - 273.15);
-      console.log("temp converted to celcius = " + celcius);
-
-      document.getElementById('todays-temp').innerHTML = celcius;
+      console.log("temp converted to celcius = " + celcius)
 
       let wind = results[0].wind.speed;
       console.log("wind speed = " + wind + " miles per second");
 
       let humidity = results[0].main.humidity;
       console.log("Humidity is = " + humidity + "%");
-    });
-  });
-};
+      document.getElementById('todays-headline').innerHTML = city + ' ' + todaysDate + ' <img src="' + todaysWeatherIcon + '">';
+      document.getElementById('todays-temp').innerHTML = "TEMP: " + celcius;
+      document.getElementById('todays-wind').innerHTML = "WIND: " + wind + "m/s";
+      document.getElementById('todays-humidity').innerHTML = "Humidity: " + humidity + "%";
+    })
+  })
+}
 
 // Create divs
 
