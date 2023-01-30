@@ -3,6 +3,39 @@ body {
 	margin: 0 auto;
 }
 
+.weather-header {
+	background: blue !important;
+}
+
+#search-input {
+	width: 100%;
+	margin-bottom: 10px;
+}
+
+.input-group-append {
+	display: block;
+	width: 100%;
+}
+
+#search-button {
+	background: blue;
+	color: white;
+	width: 100%;
+	border-radius: 5px;
+}
 #form-heading {
 	padding-top: 41px;
 }
+
+.col-day {
+    width: 18%;
+    background: blue;
+    color: white;
+    float: left;
+    box-sizing: border-box;
+    padding: 5px;
+  }
+
+  #day-1, #day-2, #day-3, #day-4 {
+    margin-right: 2.5%;
+  }
