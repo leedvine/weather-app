@@ -23,8 +23,18 @@ body {
 	width: 100%;
 	border-radius: 5px;
 }
+
+#today {
+	padding: 15px;
+	border: 1px solid black;
+}
+
 #form-heading {
 	padding-top: 41px;
+}
+
+#forecast {
+	padding: 0 12px;
 }
 
 .col-day {
@@ -33,9 +43,14 @@ body {
     color: white;
     float: left;
     box-sizing: border-box;
-    padding: 5px;
+    padding: 10px;
+    font-size: 15px;
   }
 
   #day-1, #day-2, #day-3, #day-4 {
     margin-right: 2.5%;
   }
+
+  .col-day h2 {
+	font-size: 17px;
+}
