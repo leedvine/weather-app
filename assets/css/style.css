@@ -4,7 +4,7 @@ body {
 }
 
 .weather-header {
-	background: blue !important;
+	background: #26256E;
 }
 
 #search-input {
@@ -18,7 +18,7 @@ body {
 }
 
 #search-button {
-	background: blue;
+	background: #5098E6;
 	color: white;
 	width: 100%;
 	border-radius: 5px;
@@ -30,7 +30,11 @@ body {
 }
 
 #form-heading {
-	padding-top: 41px;
+	padding-top: 10px;
+}
+
+#todays-headline {
+text-transform: capitalize;
 }
 
 #forecast {
@@ -39,7 +43,7 @@ body {
 
 .col-day {
     width: 18%;
-    background: blue;
+    background: #697C90;
     color: white;
     float: left;
     box-sizing: border-box;

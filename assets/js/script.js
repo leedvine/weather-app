@@ -7,7 +7,7 @@ document.getElementById("today").innerHTML += '<div id="todays-weather"></div>';
 document.getElementById("todays-weather").innerHTML +=
   '<h2 id="todays-headline"></h1><div id="todays-temp"></div><div id="todays-wind"></div><div id="todays-humidity"></div>';
 document.getElementById("todays-headline").innerHTML =
-  "No town or city selected. Please use search box!";
+  "<---- SELECT CITY";
 
 // Onclick even for button and preventing browser default behaviour
 $("#search-button").on("click", function (event) {
@@ -18,6 +18,13 @@ $("#search-button").on("click", function (event) {
 // Function to run the weather search
 
 function runWeatherSearch() {
+
+//clear previous results if multiple search
+
+document.getElementById("forecast").innerHTML = "";
+
+// Use Search input value to find longitude and latitude of city
+
   let city = $("#search-input").val();
   console.log(city);
 
@@ -38,6 +45,8 @@ function runWeatherSearch() {
     console.log(latitudeResult);
     console.log(longitudeResult);
 
+// Create URL for API to return relevant data based on geo location of city
+
     let queryURL =
       "https://api.openweathermap.org/data/2.5/forecast?" +
       "lat=" +
@@ -56,8 +65,12 @@ function runWeatherSearch() {
       let results = response.list;
       console.log(results);
 
+
+      // Get date data strip time and reformat date 
       let dateData = results[0].dt_txt;
-      console.log(dateData);
+     
+      date = moment(dateData).format('DD/MM/YYYY');
+      console.log(date)
 
       let weatherIcon =
         "https://openweathermap.org/img/wn/" +
@@ -71,18 +84,19 @@ function runWeatherSearch() {
       console.log("temp converted to celcius = " + celcius);
 
       let wind = results[0].wind.speed;
-      let windRounded = Math.round(wind * 10) / 10;
-      console.log("wind speed = " + windRounded + " miles per second");
+      let windKPH = wind * 3.6;
+      let windRounded = Math.round(windKPH * 10) / 10;
+      console.log("wind speed = " + windRounded + "KPH");
 
       let humidity = results[0].main.humidity;
       console.log("Humidity is = " + humidity + "%");
 
       // Populate Divs with generated content for todays weather
       document.getElementById("todays-headline").innerHTML =
-        city + " " + dateData + ' <img src="' + weatherIcon + '">';
-      document.getElementById("todays-temp").innerHTML = "TEMP: " + celcius;
+        city + " " + "(" + date + ")" + ' <img src="' + weatherIcon + '">';
+      document.getElementById("todays-temp").innerHTML = "Temp: " + celcius + "°C";
       document.getElementById("todays-wind").innerHTML =
-        "WIND: " + windRounded + "m/s";
+        "Wind: " + windRounded + "KPH";
       document.getElementById("todays-humidity").innerHTML =
         "Humidity: " + humidity + "%";
 
@@ -100,7 +114,7 @@ function runWeatherSearch() {
       // Gather data for day 1 of 5
 
       dateData = results[8].dt_txt;
-      console.log(dateData);
+      date = moment(dateData).format('DD/MM/YYYY');
 
       weatherIcon =
         "https://openweathermap.org/img/wn/" +
@@ -115,8 +129,8 @@ function runWeatherSearch() {
       console.log("temp converted to celcius = " + celcius);
 
       wind = results[8].wind.speed;
-      windRounded = Math.round(wind * 10) / 10;
-      console.log("wind speed = " + windRounded + " miles per second");
+      windKPH = wind * 3.6;
+      windRounded = Math.round(windKPH * 10) / 10;
 
       humidity = results[8].main.humidity;
       console.log("Humidity is = " + humidity + "%");
@@ -124,10 +138,10 @@ function runWeatherSearch() {
       //Populate Divs with generated content for day 1 of 5 weather
 
       document.getElementById("day-1-headline").innerHTML =
-        dateData + ' <img src="' + weatherIcon + '">';
-      document.getElementById("day-1-temp").innerHTML = "TEMP: " + celcius;
+        date + ' <img src="' + weatherIcon + '">';
+      document.getElementById("day-1-temp").innerHTML = "Temp: " + celcius + "°C";
       document.getElementById("day-1-wind").innerHTML =
-        "WIND: " + windRounded + "m/s";
+        "Wind: " + windRounded + "KPH";
       document.getElementById("day-1-humidity").innerHTML =
         "Humidity: " + humidity + "%";
 
@@ -139,7 +153,7 @@ function runWeatherSearch() {
       // Gather data for day 2 of 5
 
       dateData = results[16].dt_txt;
-      console.log(dateData);
+      date = moment(dateData).format('DD/MM/YYYY');
 
       weatherIcon =
         "https://openweathermap.org/img/wn/" +
@@ -154,8 +168,9 @@ function runWeatherSearch() {
       console.log("temp converted to celcius = " + celcius);
 
       wind = results[16].wind.speed;
-      windRounded = Math.round(wind * 10) / 10;
-      console.log("wind speed = " + windRounded + " miles per second");
+      windKPH = wind * 3.6;
+      windRounded = Math.round(windKPH * 10) / 10;
+      
 
       humidity = results[16].main.humidity;
       console.log("Humidity is = " + humidity + "%");
@@ -163,10 +178,10 @@ function runWeatherSearch() {
       //Populate Divs with generated content for day 2 of 5 weather
 
       document.getElementById("day-2-headline").innerHTML =
-        dateData + ' <img src="' + weatherIcon + '">';
-      document.getElementById("day-2-temp").innerHTML = "TEMP: " + celcius;
+        date + ' <img src="' + weatherIcon + '">';
+      document.getElementById("day-2-temp").innerHTML = "Temp: " + celcius + "°C";
       document.getElementById("day-2-wind").innerHTML =
-        "WIND: " + windRounded + "m/s";
+        "Wind: " + windRounded + "KPH";
       document.getElementById("day-2-humidity").innerHTML =
         "Humidity: " + humidity + "%";
 
@@ -177,8 +192,7 @@ document.getElementById("day-3").innerHTML +=
 
 // Gather data for day 3 of 5
 
-dateData = results[24].dt_txt;
-console.log(dateData);
+date = moment(dateData).format('DD/MM/YYYY');
 
 weatherIcon =
 "https://openweathermap.org/img/wn/" +
@@ -193,8 +207,8 @@ celcius = Math.round(tempKelvin - 273.15);
 console.log("temp converted to celcius = " + celcius);
 
 wind = results[24].wind.speed;
-windRounded = Math.round(wind * 10) / 10;
-console.log("wind speed = " + windRounded + " miles per second");
+windKPH = wind * 3.6;
+windRounded = Math.round(windKPH * 10) / 10;
 
 humidity = results[24].main.humidity;
 console.log("Humidity is = " + humidity + "%");
@@ -202,10 +216,10 @@ console.log("Humidity is = " + humidity + "%");
 //Populate Divs with generated content for day 3 of 5 weather
 
 document.getElementById("day-3-headline").innerHTML =
-dateData + ' <img src="' + weatherIcon + '">';
-document.getElementById("day-3-temp").innerHTML = "TEMP: " + celcius;
+date + ' <img src="' + weatherIcon + '">';
+document.getElementById("day-3-temp").innerHTML = "Temp: " + celcius + "°C";
 document.getElementById("day-3-wind").innerHTML =
-"WIND: " + windRounded + "m/s";
+"Wind: " + windRounded + "KPH";
 document.getElementById("day-3-humidity").innerHTML =
 "Humidity: " + humidity + "%";
 
@@ -217,7 +231,7 @@ document.getElementById("day-4").innerHTML +=
 // Gather data for day 4 of 5
 
 dateData = results[32].dt_txt;
-console.log(dateData);
+date = moment(dateData).format('DD/MM/YYYY');
 
 weatherIcon =
 "https://openweathermap.org/img/wn/" +
@@ -232,8 +246,8 @@ celcius = Math.round(tempKelvin - 273.15);
 console.log("temp converted to celcius = " + celcius);
 
 wind = results[32].wind.speed;
-windRounded = Math.round(wind * 10) / 10;
-console.log("wind speed = " + windRounded + " miles per second");
+windKPH = wind * 3.6;
+windRounded = Math.round(windKPH * 10) / 10;
 
 humidity = results[32].main.humidity;
 console.log("Humidity is = " + humidity + "%");
@@ -241,10 +255,10 @@ console.log("Humidity is = " + humidity + "%");
 //Populate Divs with generated content for day 4 of 5 weather
 
 document.getElementById("day-4-headline").innerHTML =
-dateData + ' <img src="' + weatherIcon + '">';
-document.getElementById("day-4-temp").innerHTML = "TEMP: " + celcius;
+date + ' <img src="' + weatherIcon + '">';
+document.getElementById("day-4-temp").innerHTML = "Temp: " + celcius + "°C";
 document.getElementById("day-4-wind").innerHTML =
-"WIND: " + windRounded + "m/s";
+"Wind: " + windRounded + "KPH";
 document.getElementById("day-4-humidity").innerHTML =
 "Humidity: " + humidity + "%";
 
@@ -257,7 +271,7 @@ document.getElementById("day-5").innerHTML +=
 // Gather data for day 5 of 5
 
 dateData = results[39].dt_txt;
-console.log(dateData);
+date = moment(dateData).format('DD/MM/YYYY');
 
 weatherIcon =
 "https://openweathermap.org/img/wn/" +
@@ -272,8 +286,8 @@ celcius = Math.round(tempKelvin - 273.15);
 console.log("temp converted to celcius = " + celcius);
 
 wind = results[39].wind.speed;
-windRounded = Math.round(wind * 10) / 10;
-console.log("wind speed = " + windRounded + " miles per second");
+windKPH = wind * 3.6;
+windRounded = Math.round(windKPH * 10) / 10;
 
 humidity = results[39].main.humidity;
 console.log("Humidity is = " + humidity + "%");
@@ -281,12 +295,15 @@ console.log("Humidity is = " + humidity + "%");
 //Populate Divs with generated content for day 5 of 5 weather
 
 document.getElementById("day-5-headline").innerHTML =
-dateData + ' <img src="' + weatherIcon + '">';
-document.getElementById("day-5-temp").innerHTML = "TEMP: " + celcius;
+date + ' <img src="' + weatherIcon + '">';
+document.getElementById("day-5-temp").innerHTML = "Temp: " + celcius + "°C";
 document.getElementById("day-5-wind").innerHTML =
-"WIND: " + windRounded + "m/s";
+"Wind: " + windRounded + "KPH";
 document.getElementById("day-5-humidity").innerHTML =
 "Humidity: " + humidity + "%";
+
+
+
 
 
 
