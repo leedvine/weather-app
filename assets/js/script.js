@@ -7,7 +7,7 @@ document.getElementById("today").innerHTML += '<div id="todays-weather"></div>';
 document.getElementById("todays-weather").innerHTML +=
   '<h2 id="todays-headline"></h1><div id="todays-temp"></div><div id="todays-wind"></div><div id="todays-humidity"></div>';
 document.getElementById("todays-headline").innerHTML =
-  "<---- SELECT CITY";
+  "NO CITY OR TOWN SELECTED";
 
 // Onclick even for button and preventing browser default behaviour
 $("#search-button").on("click", function (event) {
@@ -191,7 +191,7 @@ document.getElementById("day-3").innerHTML +=
 '<h2 id="day-3-headline"></h1><div id="day-3-temp"></div><div id="day-3-wind"></div><div id="day-3-humidity"></div>';
 
 // Gather data for day 3 of 5
-
+dateData = results[24].dt_txt;
 date = moment(dateData).format('DD/MM/YYYY');
 
 weatherIcon =
