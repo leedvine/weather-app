@@ -32,9 +32,7 @@ document.getElementById("forecast").innerHTML = "";
   let city = $("#search-input").val();
   console.log(city);
 
-  // Store to local storage
-
-  // localStorage.setItem("previous", city);
+  
   
   
 
