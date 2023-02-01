@@ -278,7 +278,6 @@ document.getElementById("day-5").innerHTML +=
 
 // Gather data for day 5 of 5
 
-// There is an issue with the final day date possibly showing as the same as day 4 so below code ensures this never happens
 dateData = results[39].dt_txt;
 date = moment(dateData).format('DD/MM/YYYY');
 
