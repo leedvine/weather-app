@@ -281,7 +281,7 @@ document.getElementById("day-5").innerHTML +=
 
 // There is an issue with the final day date possibly showing as the same as day 4 so below code ensures this never happens
 dateData = results[32].dt_txt;
-date = moment(new Date()).add(5, 'days').toDate()
+date = moment(new Date()).add(6, 'days').toDate()
 lastDay = moment(date).format('DD/MM/YYYY');
 
 weatherIcon =
