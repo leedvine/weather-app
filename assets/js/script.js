@@ -1,3 +1,4 @@
+
 // Create variable for api key
 let api = "2a06c39ab528ae5260e7be3fb9a676eb";
 
@@ -8,6 +9,8 @@ document.getElementById("todays-weather").innerHTML +=
   '<h2 id="todays-headline"></h1><div id="todays-temp"></div><div id="todays-wind"></div><div id="todays-humidity"></div>';
 document.getElementById("todays-headline").innerHTML =
   "NO CITY OR TOWN SELECTED";
+
+
 
 // Onclick even for button and preventing browser default behaviour
 $("#search-button").on("click", function (event) {
@@ -23,10 +26,17 @@ function runWeatherSearch() {
 
 document.getElementById("forecast").innerHTML = "";
 
+
 // Use Search input value to find longitude and latitude of city
 
   let city = $("#search-input").val();
   console.log(city);
+
+  // Store to local storage
+
+  // localStorage.setItem("previous", city);
+  
+  
 
   let queryCity =
     "https://api.openweathermap.org/geo/1.0/direct?q=" +
@@ -231,6 +241,7 @@ document.getElementById("day-4").innerHTML +=
 // Gather data for day 4 of 5
 
 dateData = results[32].dt_txt;
+console.log(dateData)
 date = moment(dateData).format('DD/MM/YYYY');
 
 weatherIcon =
@@ -270,8 +281,10 @@ document.getElementById("day-5").innerHTML +=
 
 // Gather data for day 5 of 5
 
-dateData = results[39].dt_txt;
-date = moment(dateData).format('DD/MM/YYYY');
+// There is an issue with the final day date possibly showing as the same as day 4 so below code ensures this never happens
+dateData = results[32].dt_txt;
+date = moment(new Date()).add(5, 'days').toDate()
+lastDay = moment(date).format('DD/MM/YYYY');
 
 weatherIcon =
 "https://openweathermap.org/img/wn/" +
@@ -295,7 +308,7 @@ console.log("Humidity is = " + humidity + "%");
 //Populate Divs with generated content for day 5 of 5 weather
 
 document.getElementById("day-5-headline").innerHTML =
-date + ' <img src="' + weatherIcon + '">';
+lastDay + ' <img src="' + weatherIcon + '">';
 document.getElementById("day-5-temp").innerHTML = "Temp: " + celcius + "°C";
 document.getElementById("day-5-wind").innerHTML =
 "Wind: " + windRounded + "KPH";
