@@ -303,7 +303,7 @@ console.log("Humidity is = " + humidity + "%");
 //Populate Divs with generated content for day 5 of 5 weather
 
 document.getElementById("day-5-headline").innerHTML =
-lastDay + ' <img src="' + weatherIcon + '">';
+date + ' <img src="' + weatherIcon + '">';
 document.getElementById("day-5-temp").innerHTML = "Temp: " + celcius + "°C";
 document.getElementById("day-5-wind").innerHTML =
 "Wind: " + windRounded + "KPH";
